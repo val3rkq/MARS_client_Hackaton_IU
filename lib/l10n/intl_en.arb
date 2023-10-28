@@ -1,0 +1,11 @@
+{
+  "temperature": "Temperature",
+  "direction": "Direction",
+  "power": "Power",
+  "speed": "Speed",
+  "pressure": "Pressure",
+  "kmh": "km / h",
+  "ms": "m / s",
+  "mphh": "mph / h"
+
+}
