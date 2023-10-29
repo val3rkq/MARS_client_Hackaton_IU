@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mars_client/pages/all_pages.dart';
-import 'package:mars_client/pages/home/bloc/home_bloc.dart';
-import 'package:mars_client/pages/home/bloc/home_event.dart';
+import 'package:mars_client/bloc/export_bloc.dart';
 import 'package:mars_client/theme/text_theme.dart';
 
+import '../generated/l10n.dart';
 import '../pages/home/widgets/label.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -37,7 +37,7 @@ class MyAppBar extends StatelessWidget {
               children: [
                 // pages
                 SizedBox(
-                  width: 200,
+                  width: 250,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -52,6 +52,8 @@ class MyAppBar extends StatelessWidget {
                   ),
                 ),
 
+                const SizedBox(width: 20,),
+
                 // account log in / log out
                 SizedBox(
                   width: 100,
@@ -59,7 +61,7 @@ class MyAppBar extends StatelessWidget {
                     onPressed: () {
                       if (isAdmin) {
                         // log out
-                        BlocProvider.of<HomeBloc>(context).add(LogoutAdmin());
+                        BlocProvider.of<MainBloc>(context).add(LogoutAdmin());
                       } else {
                         // log in
                         Navigator.push(
@@ -71,7 +73,7 @@ class MyAppBar extends StatelessWidget {
                       }
                     },
                     child: Text(
-                      isAdmin ? 'Log Out' : 'Log In',
+                      isAdmin ? S.of(context).logout : S.of(context).login,
                       style: menuPageTextStyle.copyWith(
                         fontWeight: FontWeight.w600,
                         color: Colors.orange,

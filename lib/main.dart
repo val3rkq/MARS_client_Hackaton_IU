@@ -1,60 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:mars_client/data/data_service.dart';
-import 'package:mars_client/local_storage/local_storage.dart';
-import 'package:mars_client/pages/home/bloc/home_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mars_client/bloc/export_bloc.dart';
+import 'package:mars_client/pages/settings/bloc/export_settings_bloc.dart';
+import 'const.dart';
 import 'pages/home/home_page.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Hive.initFlutter();
-  // var box = Hive.openBox(StorageBoxName);
-  runApp(MyApp());
+  await Hive.initFlutter();
+  await Hive.openBox(storageBoxName).then(
+    (value) => runApp(const MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final LocalStorage _localStorage = LocalStorage();
-  final DataService _dataService = DataService();
-  int? statusCode;
-
-  Future<void> getStatusCode() async {
-    statusCode = await _dataService.getStatusCode();
-  }
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // _localStorage.updateStorage();
-    // _localStorage.getStorage();
-
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => HomeBloc(),
+          create: (context) => MainBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SettingsBloc(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Mars Client',
-        debugShowCheckedModeBanner: false,
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        theme: ThemeData(
-          // overlayColor: Colors.white54,
-          primaryColor: Colors.deepOrange,
-          primarySwatch: Colors.deepOrange,
-        ),
-        supportedLocales: const [
-          Locale('en'), // English
-          Locale('ru'), // Russian
-        ],
-        home: HomePage(),
+      child: BlocBuilder<MainBloc, MainState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Mars Client',
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            theme: ThemeData(
+              // overlayColor: Colors.white54,
+              primaryColor: Colors.deepOrange,
+              primarySwatch: Colors.deepOrange,
+            ),
+            supportedLocales: const [
+              Locale('en'), // English
+              Locale('ru'), // Russian
+            ],
+            locale: Locale(BlocProvider.of<MainBloc>(context).state.locale),
+            home: HomePage(),
+          );
+        },
       ),
     );
   }

@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-import 'package:mars_client/constants/constants.dart';
+import 'package:mars_client/const.dart';
 
 import 'data.dart';
 import 'package:http/http.dart' as http;
 
 class DataService {
-  final String _url = '$APILink/v1/state';
-  final String _moveUrl = '$APILink/v1/move';
-  final String _autopilotUrl = '$APILink/v1/autopilot';
+  final String _url = '$apiLink/v1/state';
+  final String _moveUrl = '$apiLink/v1/move';
+  final String _autopilotUrl = '$apiLink/v1/autopilot';
 
   // get status code
   Future<int> getStatusCode() async {
@@ -46,7 +46,6 @@ class DataService {
     var response = await http.get(endpoint);
 
     var body = jsonDecode(response.body);
-    print(body);
     return Data.fromJSON(body);
   }
 

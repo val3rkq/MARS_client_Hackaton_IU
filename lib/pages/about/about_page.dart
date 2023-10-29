@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mars_client/bloc/export_bloc.dart';
 import 'package:mars_client/components/app_bar.dart';
 import 'package:mars_client/components/title.dart';
 
-import '../home/bloc/home_bloc.dart';
-import '../home/bloc/home_state.dart';
+import 'about_widget.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -16,8 +16,6 @@ class AboutPage extends StatelessWidget {
         alignment: Alignment.topLeft,
         children: [
           // content
-
-          // if (snapshot.connectionState == ConnectionState.done) {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -25,26 +23,21 @@ class AboutPage extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/img/background.png'),
+                  fit: BoxFit.cover,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ],
+              ),
+              child: const Center(
+                child: AboutWidget(),
+              ),
             ),
           ),
 
           // appbar
-          BlocBuilder<HomeBloc, HomeState>(
+          BlocBuilder<MainBloc, MainState>(
             builder: (context, state) {
               // get info if the user is logged in as admin
               bool isAdmin = state.isAdmin;

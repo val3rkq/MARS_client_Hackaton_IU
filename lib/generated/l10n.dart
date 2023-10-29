@@ -47,6 +47,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `English`
+  String get locale {
+    return Intl.message(
+      'English',
+      name: 'locale',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Temperature`
   String get temperature {
     return Intl.message(
@@ -97,6 +107,36 @@ class S {
     );
   }
 
+  /// `Humidity`
+  String get humidity {
+    return Intl.message(
+      'Humidity',
+      name: 'humidity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Environmental parameters`
+  String get env {
+    return Intl.message(
+      'Environmental parameters',
+      name: 'env',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Units`
+  String get units {
+    return Intl.message(
+      'Units',
+      name: 'units',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `km / h`
   String get kmh {
     return Intl.message(
@@ -126,6 +166,276 @@ class S {
       args: [],
     );
   }
+
+  /// `mm Hg`
+  String get mmhg {
+    return Intl.message(
+      'mm Hg',
+      name: 'mmhg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pa`
+  String get pa {
+    return Intl.message(
+      'Pa',
+      name: 'pa',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `°C`
+  String get c {
+    return Intl.message(
+      '°C',
+      name: 'c',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `°F`
+  String get f {
+    return Intl.message(
+      '°F',
+      name: 'f',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Khlamid`
+  String get khlamid {
+    return Intl.message(
+      'Khlamid',
+      name: 'khlamid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monad`
+  String get monad {
+    return Intl.message(
+      'Monad',
+      name: 'monad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bimbim`
+  String get bimbim {
+    return Intl.message(
+      'Bimbim',
+      name: 'bimbim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `P - autopilot`
+  String get p_autopilot {
+    return Intl.message(
+      'P - autopilot',
+      name: 'p_autopilot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W - move forward`
+  String get w_mf {
+    return Intl.message(
+      'W - move forward',
+      name: 'w_mf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A - move left`
+  String get a_ml {
+    return Intl.message(
+      'A - move left',
+      name: 'a_ml',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `D - move right`
+  String get d_mr {
+    return Intl.message(
+      'D - move right',
+      name: 'd_mr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `S - move back`
+  String get s_mb {
+    return Intl.message(
+      'S - move back',
+      name: 's_mb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any questions? Text us: iu7@bmstu.com`
+  String get questions_text {
+    return Intl.message(
+      'Any questions? Text us: iu7@bmstu.com',
+      name: 'questions_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `v 1.0 developed by IU7, the best cathedra in the world`
+  String get developed_text {
+    return Intl.message(
+      'v 1.0 developed by IU7, the best cathedra in the world',
+      name: 'developed_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in`
+  String get login {
+    return Intl.message(
+      'Log in',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get logout {
+    return Intl.message(
+      'Log out',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get submit {
+    return Intl.message(
+      'Submit',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please, enter the username..`
+  String get enter_username {
+    return Intl.message(
+      'Please, enter the username..',
+      name: 'enter_username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please, enter the password..`
+  String get enter_password {
+    return Intl.message(
+      'Please, enter the password..',
+      name: 'enter_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not correct password..`
+  String get wrong_password {
+    return Intl.message(
+      'Not correct password..',
+      name: 'wrong_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Navigation`
+  String get navigation {
+    return Intl.message(
+      'Navigation',
+      name: 'navigation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language_text {
+    return Intl.message(
+      'Language',
+      name: 'language_text',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -134,6 +444,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ru'),
     ];
   }
 

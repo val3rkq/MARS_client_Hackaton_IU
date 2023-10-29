@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../generated/l10n.dart';
+
 class KhlamidaMonadaWidget extends StatelessWidget {
   const KhlamidaMonadaWidget({
     super.key,
@@ -32,15 +34,18 @@ class KhlamidaMonadaWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           children: [
             BacteriumItem(
-              name: 'Khlamid',
+              name: S.of(context).khlamid,
+              label: 'khlamid',
               percent: khlamid,
             ),
             BacteriumItem(
-              name: 'Monad',
+              name: S.of(context).monad,
+              label: 'monad',
               percent: monad,
             ),
             BacteriumItem(
-              name: "Bimbim",
+              name: S.of(context).bimbim,
+              label: 'bimbim',
               percent: bimbim,
             ),
           ],
@@ -55,9 +60,11 @@ class BacteriumItem extends StatelessWidget {
     super.key,
     required this.name,
     required this.percent,
+    required this.label,
   });
 
   final String name;
+  final String label;
   final int percent;
 
   @override
@@ -85,7 +92,7 @@ class BacteriumItem extends StatelessWidget {
           Expanded(
             child: Image(
               fit: BoxFit.fitWidth,
-              image: AssetImage('assets/img/$name.png'),
+              image: AssetImage('assets/img/$label.png'),
             ),
           ),
           const SizedBox(

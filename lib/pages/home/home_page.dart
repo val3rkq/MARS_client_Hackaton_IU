@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mars_client/data/data.dart';
 import 'package:mars_client/data/data_service.dart';
-import 'package:mars_client/pages/home/bloc/home_event.dart';
-import 'package:mars_client/services/get_padding.dart';
-import 'package:mars_client/services/get_speed.dart';
+import 'package:mars_client/bloc/export_bloc.dart';
+import 'package:mars_client/services/export_all_services.dart';
 
-import 'bloc/home_bloc.dart';
-import 'bloc/home_state.dart';
+import '../../generated/l10n.dart';
 import 'widgets/all_widgets.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final DataService _dataService = DataService();
-
-  bool isAdmin = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: BlocBuilder<HomeBloc, HomeState>(
+      body: BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
           // get info if the user is logged in as admin
           bool isAdmin = state.isAdmin;
@@ -108,85 +104,87 @@ class HomePage extends StatelessWidget {
                                 ),
 
                                 // buttons
-                                isAdmin ? Container(
-                                  height: 80,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.6,
-                                  padding:
-                                      const EdgeInsets.fromLTRB(30, 0, 30, 30),
-                                  child: Center(
-                                    child: ListView(
-                                      padding: EdgeInsets.zero,
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        BlocBuilder<HomeBloc, HomeState>(
-                                          builder: (context, state) {
-                                            return BtnItem(
-                                              icon: const Icon(
-                                                Icons.android_rounded,
-                                                color: Colors.white,
-                                              ),
-                                              isAutopilotStarted: state.isAutopilotStarted,
-                                              text: 'P - autopilot',
-                                              onTap: () async {
-                                                BlocProvider.of<HomeBloc>(
-                                                        context)
-                                                    .add(AutopilotTap());
+                                isAdmin
+                                    ? Container(
+                                        height: 80,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.6,
+                                        padding: const EdgeInsets.fromLTRB(
+                                            30, 0, 30, 30),
+                                        child: Center(
+                                          child: ListView(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.horizontal,
+                                            children: [
+                                              BtnItem(
+                                                icon: const Icon(
+                                                  Icons.android_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                isAutopilotStarted: state
+                                                    .isAutopilotStarted,
+                                                text: S.of(context).p_autopilot,
+                                                onTap: () async {
+                                                  BlocProvider.of<MainBloc>(
+                                                      context)
+                                                      .add(AutopilotTap());
 
-                                                await _dataService
-                                                    .autopilot(!state.isAutopilotStarted);
-                                              },
-                                            );
-                                          },
-                                        ),
-                                        BtnItem(
-                                          icon: const Icon(
-                                            Icons.arrow_upward_rounded,
-                                            color: Colors.white,
+                                                  await _dataService
+                                                      .autopilot(!state
+                                                      .isAutopilotStarted);
+                                                },
+                                              ),
+                                              BtnItem(
+                                                icon: const Icon(
+                                                  Icons.arrow_upward_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                text: S.of(context).w_mf,
+                                                onTap: () async {
+                                                  await _dataService.moveAction(
+                                                      0, 1);
+                                                },
+                                              ),
+                                              BtnItem(
+                                                icon: const Icon(
+                                                  Icons.arrow_downward_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                text: S.of(context).s_mb,
+                                                onTap: () async {
+                                                  await _dataService.moveAction(
+                                                      180, 1);
+                                                },
+                                              ),
+                                              BtnItem(
+                                                icon: const Icon(
+                                                  Icons.arrow_back_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                text: S.of(context).a_ml,
+                                                onTap: () async {
+                                                  await _dataService.moveAction(
+                                                      270, 1);
+                                                },
+                                              ),
+                                              BtnItem(
+                                                icon: const Icon(
+                                                  Icons.arrow_forward_rounded,
+                                                  color: Colors.white,
+                                                ),
+                                                text: S.of(context).d_mr,
+                                                onTap: () async {
+                                                  await _dataService.moveAction(
+                                                      90, 1);
+                                                },
+                                              ),
+                                            ],
                                           ),
-                                          text: 'W - move up',
-                                          onTap: () async {
-                                            await _dataService.moveAction(0, 1);
-                                          },
                                         ),
-                                        BtnItem(
-                                          icon: const Icon(
-                                            Icons.arrow_downward_rounded,
-                                            color: Colors.white,
-                                          ),
-                                          text: 'S - move down',
-                                          onTap: () async {
-                                            await _dataService.moveAction(
-                                                180, 1);
-                                          },
-                                        ),
-                                        BtnItem(
-                                          icon: const Icon(
-                                            Icons.arrow_back_rounded,
-                                            color: Colors.white,
-                                          ),
-                                          text: 'A - move left',
-                                          onTap: () async {
-                                            await _dataService.moveAction(
-                                                270, 1);
-                                          },
-                                        ),
-                                        BtnItem(
-                                          icon: const Icon(
-                                            Icons.arrow_forward_rounded,
-                                            color: Colors.white,
-                                          ),
-                                          text: 'D - move right',
-                                          onTap: () async {
-                                            await _dataService.moveAction(
-                                                90, 1);
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ) : const SizedBox(),
+                                      )
+                                    : const SizedBox(),
                               ],
                             ),
                           ],
@@ -194,13 +192,9 @@ class HomePage extends StatelessWidget {
                       ),
 
                       // appbar
-                      BlocBuilder<HomeBloc, HomeState>(
-                        builder: (context, state) {
-                          return MyAppBar(
-                            currentPageIndex: 0,
-                            isAdmin: isAdmin,
-                          );
-                        },
+                      MyAppBar(
+                        currentPageIndex: 0,
+                        isAdmin: isAdmin,
                       ),
 
                       // finally opened drawer
@@ -217,7 +211,7 @@ class HomePage extends StatelessWidget {
                               Column(
                                 children: [
                                   SideInfo(
-                                    isFirst: true,
+                                    isFirstItem: true,
                                     temperature: data?.temperature ?? 30,
                                     humidity: data?.humidity ?? 20,
                                     pressure: data?.pressure ?? 29.2,
@@ -226,11 +220,8 @@ class HomePage extends StatelessWidget {
                                     height: 20,
                                   ),
                                   SideInfo(
-                                    isFirst: false,
+                                    isFirstItem: false,
                                     power: data?.power ?? 42,
-                                    speed: data?.power == null
-                                        ? '70'
-                                        : getSpeed(data!.power!, 'm / s'),
                                   ),
                                 ],
                               ),
