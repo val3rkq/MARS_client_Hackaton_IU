@@ -1,2 +1,3 @@
 
-String API_LINK = 'http://172.20.10.3:8000';
+String APILink = 'http://192.168.160.52:8000';
+String StorageBoxName = 'MARS_CLIENT_LOCAL_DATASET';

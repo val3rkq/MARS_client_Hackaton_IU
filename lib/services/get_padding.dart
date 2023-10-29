@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget getPadding({
+  required BuildContext context,
   required Widget child,
   double x = 0.0,
   double y = 0.0,
@@ -10,6 +11,7 @@ Widget getPadding({
   double top = 0;
   double bottom = 0;
 
+  // double constSpace = MediaQuery.of(context).size.width * 0.48 / 20 - 1;
   double constSpace = 60;
 
   if (x < 0) {
